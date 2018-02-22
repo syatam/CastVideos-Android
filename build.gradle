@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+    mavenLocal()
+}
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 27
+        applicationId="com.google.sample.cast.refplayer"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    lintOptions.abortOnError false
+
+    sourceSets.main {
+        manifest.srcFile 'AndroidManifest.xml'
+        java.srcDirs = ['src']
+        res.srcDirs = ['res']
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:mediarouter-v7:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
+    compile 'com.google.android.gms:play-services-cast-framework:11.8.0'
+    compile 'com.googlecode.android-query:android-query:0.25.9'
+}
